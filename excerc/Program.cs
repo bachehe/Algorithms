@@ -18,8 +18,11 @@ namespace exerc
             //string roman = "MMCVIX";
             //Console.WriteLine(RomanCalculator(roman));
 
-            var names = new[] { "Peter", "huj", "fuj", "sruj" };
-            Console.WriteLine(StringMethod(names));
+            //var names = new[] { "Peter", "huj", "fuj", "sruj" };
+            //Console.WriteLine(StringMethod(names));
+
+            long nb = 35;
+            Console.WriteLine(ExpandedForm(nb));
             
         }
 
@@ -140,7 +143,7 @@ namespace exerc
         /// </summary>
         public static int RomanCalculator(string roman)
         {
-            
+
             var result = 0;
             var dict = new Dictionary<string, int>()
             {
@@ -152,7 +155,7 @@ namespace exerc
                 {"D", 500 },
                 {"M", 1000 },
             };
-    
+
             var split = String.Join(" ", roman.Split(' '));
 
             foreach (var i in split)
@@ -173,7 +176,7 @@ namespace exerc
             foreach (var n in name)
             {
                 value++;
-               
+
             }
             switch (value)
             {
@@ -203,6 +206,20 @@ namespace exerc
 
 
             return string.Empty;
+        }
+
+        /// <summary>
+        /// You will be given a number and you will need to return it as a string in Expanded Form. For example:
+        /// 12 = "10+2"
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static string ExpandedForm(long num)
+        {
+            var str = num.ToString();
+            return String.Join(" + ", str
+                .Select((x, i) => char.GetNumericValue(x) * Math.Pow(10, str.Length - i - 1))
+                .Where(x => x > 0));
         }
     }
 }
