@@ -9,14 +9,18 @@ namespace exerc
 
         public static void Main(string[] args)
         {
-            OrderByDescInt();
-            Console.WriteLine(Underscore());
+            //OrderByDescInt();
+            //Console.WriteLine(Underscore());
 
-            int[] exampleTest1 = { 5, 5, 5, 4 };
-            Console.WriteLine(Int(exampleTest1));
+            //int[] exampleTest1 = { 5, 5, 5, 4 };
+            //Console.WriteLine(Int(exampleTest1));
 
-            string roman = "MMCVIX";
-            Console.WriteLine(RomanCalculator(roman));
+            //string roman = "MMCVIX";
+            //Console.WriteLine(RomanCalculator(roman));
+
+            var names = new[] { "Peter", "huj", "fuj", "sruj" };
+            Console.WriteLine(StringMethod(names));
+            
         }
 
         /// <summary>
@@ -158,6 +162,47 @@ namespace exerc
                 result = result + test;
             }
             return result;
+        }
+
+        /// <summary>
+        /// Implement the function which takes an array containing the names of people that like an item. It must return the display text as shown in the examples:
+        /// </summary>
+        public static string StringMethod(string[] name)
+        {
+            int value = 0;
+            foreach (var n in name)
+            {
+                value++;
+               
+            }
+            switch (value)
+            {
+                case 0:
+                    Console.WriteLine("no one likes this");
+                    break;
+
+                case 1:
+                    Console.WriteLine($"{name[0]} likes this");
+                    break;
+
+                case 2:
+                    Console.WriteLine($"{name[0]} and {name[1]} like this");
+                    break;
+
+                case 3:
+                    Console.WriteLine($"{name[0]}, {name[1]} and {name[2]} like this");
+                    break;
+
+                case 4:
+                    Console.WriteLine($"{name[0]}, {name[1]} and {name.Count() - 2} others like this");
+                    break;
+
+                default:
+                    break;
+            }
+
+
+            return string.Empty;
         }
     }
 }
