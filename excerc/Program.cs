@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace exerc
 {
@@ -18,11 +19,20 @@ namespace exerc
             //string roman = "MMCVIX";
             //Console.WriteLine(RomanCalculator(roman));
 
-            //var names = new[] { "Peter", "huj", "fuj", "sruj" };
+            //var names = new[] { "Peter", "huj", "fuj", "sruj"};
             //Console.WriteLine(StringMethod(names));
 
-            long nb = 35;
-            Console.WriteLine(ExpandedForm(nb));
+            //long nb = 4820639;
+            //Console.WriteLine(ExpandedForm(nb));
+
+            //int startPriceOld = 2000;
+            //int startPriceNew = 8000;
+            //int savingPerMonth = 1000;
+            //double percentLossByMonth = 1.5;
+            //Console.WriteLine(CarRentalCalculator(startPriceOld, startPriceNew, savingPerMonth, percentLossByMonth));
+
+            //string nb = "7842126960";
+            //Console.WriteLine(ValidPhoneNumber(nb));
             
         }
 
@@ -220,6 +230,53 @@ namespace exerc
             return String.Join(" + ", str
                 .Select((x, i) => char.GetNumericValue(x) * Math.Pow(10, str.Length - i - 1))
                 .Where(x => x > 0));
+        }
+
+        /// <summary>
+        /// He thinks he can save $1000 each month but the prices of his old car and of the new one decrease of 1.5 percent per month. 
+        /// Furthermore this percent of loss increases of 0.5 percent at the end of every two months. Our man finds it difficult to make all these calculations.
+        /// </summary>
+        /// <param name="startPriceOld"></param>
+        /// <param name="startPriceNew"></param>
+        /// <param name="savingPerMonth"></param>
+        /// <param name="percentLossByMonth"></param>
+        /// <returns></returns>
+        public static int[] CarRentalCalculator(int startPriceOld, int startPriceNew,
+                                                int savingPerMonth, double percentLossByMonth)
+        {
+            int month = 0;
+            double priceNew = startPriceNew;
+            double priceOld = startPriceOld;
+            double savings = priceOld;
+            while (savings < priceNew)
+            {
+                month++;
+                if (month % 2 == 0) percentLossByMonth += 0.5;
+                priceOld -= priceOld * (percentLossByMonth / 100);
+                priceNew -= priceNew * (percentLossByMonth / 100);
+                savings = month * savingPerMonth + priceOld;
+            }
+
+            return new int[] { month, (int)(Math.Round(savings - priceNew)) };
+        }
+
+        /// <summary>
+        /// Write a function that accepts a string, and returns true if it is in the form of a phone number.
+        ///Assume that any integer from 0-9 in any of the spots will produce a valid phone number.
+        /// </summary>
+        /// <param name="phoneNumber"></param>
+        /// <returns></returns>
+        public static bool ValidPhoneNumber(string phoneNumber)
+        {
+            var res = Regex.Replace(phoneNumber, @"(\d{3})(\d{3})(\d{4})", "($1) $2-$3");
+
+            bool valid = Regex.IsMatch(res, @"\(\d\d\d\)\s[A-Za-z0-9]+-[A-Za-z0-9]+");
+            if (valid)
+                return true;
+            else
+                return false;
+
+            //return Regex.IsMatch(phoneNumber, @"^\(\d{3}\) \d{3}-\d{4}\z");
         }
     }
 }
