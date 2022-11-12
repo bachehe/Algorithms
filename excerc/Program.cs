@@ -33,6 +33,15 @@ namespace exerc
 
             //string nb = "7842126960";
             //Console.WriteLine(ValidPhoneNumber(nb));
+
+            //string[] smile = new[] { ":)", ":D", ":(" };
+            //CountSimleys(smile);
+
+            //int[,] board = new int[,] { { 1, 2, 2 }, { 0, 2, 0 }, { 0, 2, 0 } };
+            //Console.WriteLine(TicTacToe(board));
+
+            //string s = "mischtschenkoana";
+            //Console.WriteLine(SolveForHighestNumber(s));
             
         }
 
@@ -277,6 +286,114 @@ namespace exerc
                 return false;
 
             //return Regex.IsMatch(phoneNumber, @"^\(\d{3}\) \d{3}-\d{4}\z");
+        }
+
+
+        /// <summary>
+        /// Given an array (arr) as an argument complete the function countSmileys that should return the total number of smiling faces.
+        /// </summary>
+        /// <param name="smileys"></param>
+        /// <returns></returns>
+        public static int CountSimleys(string[] smileys)
+        {
+            string[] validFaces = new[] { ":)", ";)", ";D", ":D", ";-D", ";~D", ":~D", ":-D", ";-)", ":~)", ":-)" };
+
+            var test = smileys.Intersect(validFaces);
+            int i = 0;
+            foreach (var t in test)
+            {
+                i++;
+            }
+
+            Console.WriteLine(i);
+            if (i == 0)
+                return 0;
+
+            return i;
+        }
+
+        /// <summary>
+        /// XD
+        /// </summary>
+        /// <param name="board"></param>
+        /// <returns></returns>
+        public static int TicTacToe(int[,] board)
+        {
+            if (board[0, 0] == board[0, 1] && board[0, 0] == board[0, 2] && board[0, 0] == 1)
+                return 1;
+            else if (board[0, 0] == board[0, 1] && board[0, 0] == board[0, 2] && board[0, 0] == 2)
+                return 2;
+            else if (board[0, 0] == board[1, 0] && board[0, 0] == board[2, 0] && board[0, 0] == 1)
+                return 1;
+            else if (board[0, 0] == board[1, 0] && board[0, 0] == board[2, 0] && board[0, 0] == 2)
+                return 2;
+            else if (board[0, 1] == board[1, 1] && board[0, 1] == board[2, 1] && board[0, 1] == 1)
+                return 1;
+            else if (board[0, 1] == board[1, 1] && board[0, 1] == board[2, 1] && board[0, 1] == 2)
+                return 2;
+            else if (board[1, 0] == board[1, 1] && board[1, 0] == board[1, 2] && board[1, 0] == 1)
+                return 1;
+            else if (board[1, 0] == board[1, 1] && board[1, 0] == board[1, 2] && board[1, 0] == 2)
+                return 2;
+            else if (board[0, 2] == board[1, 2] && board[0, 2] == board[2, 2] && board[0, 2] == 1)
+                return 1;
+            else if (board[0, 2] == board[1, 2] && board[0, 2] == board[2, 2] && board[0, 2] == 2)
+                return 2;
+            else if (board[2, 0] == board[2, 1] && board[2, 0] == board[2, 0] && board[2, 0] == 1)
+                return 1;
+            else if (board[2, 0] == board[2, 1] && board[2, 0] == board[2, 0] && board[2, 0] == 2)
+                return 2;
+            else if (board[0, 0] == board[1, 1] && board[0, 0] == board[2, 2] && board[0, 0] == 1)
+                return 1;
+            else if (board[0, 0] == board[1, 1] && board[0, 0] == board[2, 2] && board[0, 0] == 2)
+                return 2;
+            else if (board[0, 2] == board[1, 1] && board[0, 2] == board[2, 0] && board[0, 2] == 1)
+                return 1;
+            else if (board[0, 2] == board[1, 1] && board[0, 2] == board[2, 0] && board[0, 2] == 2)
+                return 2;
+            else
+                return 0;
+
+        }
+
+        /// <summary>
+        /// Given a lowercase string that has alphabetic characters only and no spaces,
+        /// return the highest value of consonant substrings. Consonants are any letters of the alphabet except "aeiou".
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static int SolveForHighestNumber(string s)
+        {
+            if (s.Length == 0)
+                return 0;
+            int tempMax = 0, maxSoFar = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u')
+                {
+                    maxSoFar = max(tempMax, maxSoFar);
+                    tempMax = 0;
+                }
+                else
+                {
+                    tempMax += s[i] - 'a' + 1;
+                }
+            }
+
+            return max(maxSoFar, tempMax); 
+        }
+        /// <summary>
+        /// SolveForHighestNumber extension
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="z"></param>
+        /// <returns></returns>
+        public static int max(int x, int z)
+        {
+            if (x > z)
+                return x;
+            else
+                return z;
         }
     }
 }
