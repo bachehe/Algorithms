@@ -44,7 +44,10 @@ namespace exerc
             //string s = "mischtschenkoana";
             //Console.WriteLine(SolveForHighestNumber(s));
             #endregion
+            var temp = new int[] { 1, 2, 3 };
+            TwoSum(temp, 4);
 
+            LengthOfLongestSubstring("abcabcbb");
         }
         #region done
 
@@ -385,7 +388,7 @@ namespace exerc
                 }
             }
 
-            return max(maxSoFar, tempMax); 
+            return max(maxSoFar, tempMax);
         }
         /// <summary>
         /// SolveForHighestNumber extension
@@ -400,6 +403,50 @@ namespace exerc
             else
                 return z;
         }
-        #endregion
+        #endregion,
+        public static int[] TwoSum(int[] nums, int target)
+        {
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    if (nums[i] + nums[j] == target)
+                        return new[] { i, j };
+                }
+            }
+            return new int[] { };
+        }
+
+        public static int LengthOfLongestSubstring(string s)
+        {
+            var word = string.Empty;
+            var count = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                for (int j = i + 1; j < s.Length; j++)
+                {
+                    if (!word.Contains(s[j]))
+                    {
+                        word += s[j];
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
+        public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+        {
+
+        }
+    }
+    public class ListNode
+    {
+        public int val;
+        public ListNode next;
+        public ListNode(int val = 0, ListNode next = null)
+        {
+            this.val = val;
+            this.next = next;
+        }
     }
 }
