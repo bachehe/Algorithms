@@ -10,6 +10,7 @@ namespace exerc
 
         public static void Main(string[] args)
         {
+            #region done
             //OrderByDescInt();
             //Console.WriteLine(Underscore());
 
@@ -42,9 +43,19 @@ namespace exerc
 
             //string s = "mischtschenkoana";
             //Console.WriteLine(SolveForHighestNumber(s));
-            
+            #endregion done
+            //var temp = new[] { 1, 2, 1 };
+            //TwoSum(temp, 2);
+
+            List<bool> numbers = new List<bool>()
+            {
+                true, false, false, true, true 
+            };
+            Console.WriteLine(GetLongest(numbers));
+
         }
 
+        #region done
         /// <summary>
         ///Your task is to make a function that can take any non-negative integer as an argument
         ///and return it with its digits in descending order.Essentially, rearrange the digits
@@ -380,7 +391,7 @@ namespace exerc
                 }
             }
 
-            return max(maxSoFar, tempMax); 
+            return max(maxSoFar, tempMax);
         }
         /// <summary>
         /// SolveForHighestNumber extension
@@ -394,6 +405,37 @@ namespace exerc
                 return x;
             else
                 return z;
+        }
+        #endregion
+        public static void TwoSum(int[] nums, int target)
+        {
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] + nums[i++] == target)
+                    Console.WriteLine(nums[i] + nums[i++]);
+
+            }
+        }
+        public static int GetLongest(List<bool> values)
+        {
+            if (values == null || values.Count == 0)
+                return 0;
+
+            var longestSequence = 0;
+            var currentSequence = 0;
+
+            foreach (var boolean in values)
+            {
+                if (!boolean)
+                    currentSequence = 0;
+                else
+                {
+                    currentSequence++;
+                    longestSequence = Math.Max(longestSequence, currentSequence);
+                }
+            }
+            return longestSequence;
         }
     }
 }
