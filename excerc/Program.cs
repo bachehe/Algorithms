@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace exerc
 {
+
     class Program
     {
 
         public static void Main(string[] args)
         {
+
             #region done
             //OrderByDescInt();
             //Console.WriteLine(Underscore());
@@ -43,15 +42,57 @@ namespace exerc
 
             //string s = "mischtschenkoana";
             //Console.WriteLine(SolveForHighestNumber(s));
-            #endregion done
             //var temp = new[] { 1, 2, 1 };
             //TwoSum(temp, 2);
 
-            List<bool> numbers = new List<bool>()
+            //List<bool> numbers = new List<bool>()
+            //{
+            //    true, false, false, true, true 
+            //};
+
+            //Console.WriteLine(GetLongest(numbers));
+            //test
+
+            //int[] nums1 = { 1, 2, 3, 0, 0, 0 };
+            //int m = 3;
+            //int[] nums2 = { 2, 5, 6, };
+            //int n = 3;
+
+            //Merge(nums1, m, nums2, n);
+
+            //int[] nums = { 1, 1, 1, 2, 2, 3,3};
+            //RemoveDuplicates(nums);
+            //var nums = new int[] { 1, 1, 1, 3, 3, 4, 3, 2, 4, 2 };
+            //ContainsDuplicate(nums);
+
+            //string s = "nagara";
+            //string t = "nagara";
+            //Console.WriteLine(IsAnagram(s, t)); 
+
+            //var s = new string[] { "eat", "tea", "tan", "ate", "nat", "bat" };
+            //GroupAnagrams(s);
+
+            //var nums = new int[] { 1, 1, 2, 2, 2, 3 };
+
+            //TopKFrequent(nums, 2);
+
+            //int[] nums = { 1, 2, 3, 4 };
+            //Console.WriteLine(ProductExceptSelf(nums));
+            #endregion done
+            char[][] sudokuBoard = new char[][]
             {
-                true, false, false, true, true 
+                new char[] { '5', '3', '.', '.', '7', '.', '.', '.', '.' },
+                new char[] { '6', '.', '.', '1', '9', '5', '.', '.', '.' },
+                new char[] { '.', '9', '8', '.', '.', '.', '.', '6', '.' },
+                new char[] { '8', '.', '.', '.', '6', '.', '.', '.', '3' },
+                new char[] { '4', '.', '.', '8', '.', '3', '.', '.', '1' },
+                new char[] { '7', '.', '.', '.', '2', '.', '.', '.', '6' },
+                new char[] { '.', '6', '.', '.', '.', '.', '2', '8', '.' },
+                new char[] { '.', '.', '.', '4', '1', '9', '.', '.', '5' },
+                new char[] { '.', '.', '.', '.', '8', '.', '.', '7', '9' }
             };
-            Console.WriteLine(GetLongest(numbers));
+
+            Console.WriteLine(IsValidSudoku(sudokuBoard));
 
         }
 
@@ -406,7 +447,6 @@ namespace exerc
             else
                 return z;
         }
-        #endregion
         public static void TwoSum(int[] nums, int target)
         {
 
@@ -436,6 +476,248 @@ namespace exerc
                 }
             }
             return longestSequence;
+        }
+        public static void Merge(int[] nums1, int m, int[] nums2, int n)
+        {
+            int index1 = m - 1;
+            int index2 = n - 1;
+            int mergedIndex = m + n - 1;
+
+            while (index1 >= 0 && index2 >= 0)
+            {
+                if (nums1[index1] >= nums2[index2])
+                {
+                    nums1[mergedIndex] = nums1[index1];
+                    index1--;
+                }
+                else
+                {
+                    nums1[mergedIndex] = nums2[index2];
+                    index2--;
+                }
+                mergedIndex--;
+            }
+            while (index2 >= 0)
+            {
+                nums1[mergedIndex] = nums2[index2];
+                index2--;
+                mergedIndex--;
+            }
+
+        }
+        public static int RemoveDuplicates(int[] nums)
+        {
+            int counter = 0;
+
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                if (nums[i] == nums[i + 1])
+                    counter++;
+
+                if (counter == 2)
+                {
+                    Console.WriteLine("tu");
+                    counter = 0;
+                }
+
+            }
+
+            return counter;
+        }
+        public static int Sorting(BinaryWriter writer, BinaryReader reader, int count)
+        {
+            var info = typeof(object).GetMethod("Equals", new[] { typeof(object), typeof(object) }).IsStatic;
+            writer.Seek(-5, SeekOrigin.End);
+            for (int i = 10; i < 15; i++)
+            {
+                writer.Write((byte)i);
+            }
+            reader.BaseStream.Position = 5;
+            return reader.Read();
+
+        }
+        public static IEnumerable<int> Foo(IEnumerable<int> nbs, int count)
+        {
+            foreach (var n in nbs)
+            {
+                if (count > 0)
+                {
+                    count--;
+                    yield return n;
+                }
+            }
+        }
+        public static bool ContainsDuplicate(int[] nums)
+        {
+            var result = false;
+
+            Array.Sort(nums);
+
+            for (int i = 0; i < nums.Length - 1; i++)
+            {
+                if (nums[i] == nums[i + 1])
+                    result = true;
+            }
+
+            Console.WriteLine(result);
+            return result;
+        }
+        public static bool IsAnagram(string s, string t)
+        {
+            var charS = s.ToCharArray();
+            var chartT = t.ToCharArray();
+
+            if (charS.Length != chartT.Length)
+                return false;
+
+            Array.Sort(charS);
+            Array.Sort(chartT);
+            foreach (var item in charS)
+            {
+                Console.WriteLine(item);
+            }
+
+            for (int i = 0; i < charS.Length; i++)
+            {
+                if (charS[i] != chartT[i])
+                    return false;
+            }
+
+            return true;
+        }
+        public static IList<IList<string>> GroupAnagrams(string[] strs)
+        {
+            var anagramGroups = new Dictionary<string, List<string>>();
+
+            foreach (var word in strs)
+            {
+                var chars = word.ToCharArray();
+                Array.Sort(chars);
+
+                var sorted = new string(chars);
+
+                if (!anagramGroups.ContainsKey(sorted))
+                    anagramGroups[sorted] = new List<string>();
+
+                anagramGroups[sorted].Add(word);
+
+            }
+            return new List<IList<string>>(anagramGroups.Values);
+        }
+        public static int[] TopKFrequent(int[] nums, int k)
+        {
+            var dict = new Dictionary<int, int>();
+            var bucket = new List<int>[nums.Length + 1];
+
+            foreach (int num in nums)
+            {
+                if (dict.ContainsKey(num))
+                    dict[num]++;
+                else
+                    dict[num] = 1;
+            }
+
+            var sortedDict = dict.OrderByDescending(x => x.Value);
+
+            var res = new List<int>();
+            foreach (var i in sortedDict)
+            {
+                res.Add(i.Key);
+                k--;
+                if (k == 0)
+                    break;
+            }
+
+            return res.ToArray();
+        }
+        public static int[] ProductExceptSelf(int[] nums)
+        {
+            int[] leftProducts = new int[nums.Length];
+            int[] rightProducts = new int[nums.Length];
+            int[] result = new int[nums.Length];
+
+            int leftProduct = 1;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                leftProducts[i] = leftProduct;
+                leftProduct *= nums[i];
+            }
+
+            int rightProduct = 1;
+            for (int i = nums.Length - 1; i >= 0; i--)
+            {
+                rightProducts[i] = rightProduct;
+                rightProduct *= nums[i];
+            }
+
+            for (int i = 0; i < nums.Length; i++)
+                result[i] = leftProducts[i] * rightProducts[i];
+
+            return result;
+        }
+
+        #endregion
+
+        static bool IsValidSudoku(char[][] board)
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                if (!IsValidSet(board[i]))
+                {
+                    return false;
+                }
+            }
+
+            for (int j = 0; j < 9; j++)
+            {
+                char[] column = new char[9];
+                for (int i = 0; i < 9; i++)
+                {
+                    column[i] = board[i][j];
+                }
+
+                if (!IsValidSet(column))
+                {
+                    return false;
+                }
+            }
+
+            for (int blockRow = 0; blockRow < 3; blockRow++)
+            {
+                for (int blockCol = 0; blockCol < 3; blockCol++)
+                {
+                    char[] subgrid = new char[9];
+                    int index = 0;
+
+                    for (int i = blockRow * 3; i < (blockRow + 1) * 3; i++)
+                    {
+                        for (int j = blockCol * 3; j < (blockCol + 1) * 3; j++)
+                        {
+                            subgrid[index++] = board[i][j];
+                        }
+                    }
+
+                    if (!IsValidSet(subgrid))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        static bool IsValidSet(char[] set)
+        {
+            HashSet<char> seen = new HashSet<char>();
+            foreach (char c in set)
+            {
+                if (c != '.' && !seen.Add(c))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
