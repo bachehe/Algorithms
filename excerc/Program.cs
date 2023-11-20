@@ -78,7 +78,6 @@ namespace exerc
 
             //int[] nums = { 1, 2, 3, 4 };
             //Console.WriteLine(ProductExceptSelf(nums));
-            #endregion done
             //char[][] sudokuBoard = new char[][]
             //{
             //    new char[] { '5', '3', '.', '.', '7', '.', '.', '.', '.' },
@@ -93,6 +92,7 @@ namespace exerc
             //};
 
            // Console.WriteLine(IsValidSudoku(sudokuBoard));
+            #endregion done
 
         }
 
@@ -656,8 +656,6 @@ namespace exerc
             return result;
         }
 
-        #endregion
-
         static bool IsValidSudoku(char[][] board)
         {
             for (int i = 0; i < 9; i++)
@@ -719,5 +717,7 @@ namespace exerc
             }
             return true;
         }
+        #endregion
+
     }
 }
