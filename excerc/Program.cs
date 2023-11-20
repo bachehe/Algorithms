@@ -43,17 +43,14 @@ namespace exerc
 
             //string s = "mischtschenkoana";
             //Console.WriteLine(SolveForHighestNumber(s));
-            #endregion done
-            //var temp = new[] { 1, 2, 1 };
-            //TwoSum(temp, 2);
+            #endregion
+            var temp = new int[] { 1, 2, 3 };
+            TwoSum(temp, 4);
 
-            List<bool> numbers = new List<bool>()
-            {
-                true, false, false, true, true 
-            };
-            Console.WriteLine(GetLongest(numbers));
+            LengthOfLongestSubstring("abcabcbb");
 
         }
+        #region done
 
         #region done
         /// <summary>
@@ -61,6 +58,8 @@ namespace exerc
         ///and return it with its digits in descending order.Essentially, rearrange the digits
         ///to create the highest possible number.Examples:Input: 42145 Output: 54421
         /// </summary>
+
+
         public static int OrderByDescInt()
         {
             var num = 42145;
@@ -406,36 +405,54 @@ namespace exerc
             else
                 return z;
         }
-        #endregion
-        public static void TwoSum(int[] nums, int target)
+        #endregion,
+        public static int[] TwoSum(int[] nums, int target)
         {
-
             for (int i = 0; i < nums.Length; i++)
             {
-                if (nums[i] + nums[i++] == target)
-                    Console.WriteLine(nums[i] + nums[i++]);
-
-            }
-        }
-        public static int GetLongest(List<bool> values)
-        {
-            if (values == null || values.Count == 0)
-                return 0;
-
-            var longestSequence = 0;
-            var currentSequence = 0;
-
-            foreach (var boolean in values)
-            {
-                if (!boolean)
-                    currentSequence = 0;
-                else
+                for (int j = i + 1; j < nums.Length; j++)
                 {
-                    currentSequence++;
-                    longestSequence = Math.Max(longestSequence, currentSequence);
+                    if (nums[i] + nums[j] == target)
+                        return new[] { i, j };
                 }
             }
-            return longestSequence;
+            return new int[] { };
+        }
+
+        public static int LengthOfLongestSubstring(string s)
+        {
+            var word = string.Empty;
+            var count = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                for (int j = i + 1; j < s.Length; j++)
+                {
+                    if (!word.Contains(s[j]))
+                    {
+                        word += s[j];
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
+        public ListNode AddTwoNumbers(ListNode l1, ListNode l2, int carry = 0)
+        {
+            if (l1 == null && l2 == null && carry == 0) return null;
+
+            int total = (l1 != null ? l1.val : 0) + (l2 != null ? l2.val : 0) + carry;
+            carry = total / 10;
+            return new ListNode(total % 10, AddTwoNumbers(l1?.next, l2?.next, carry));
+        }
+    }
+    public class ListNode
+    {
+        public int val;
+        public ListNode next;
+        public ListNode(int val = 0, ListNode next = null)
+        {
+            this.val = val;
+            this.next = next;
         }
     }
 }
