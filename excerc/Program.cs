@@ -7,47 +7,6 @@ using System.Text.RegularExpressions;
 
 namespace exerc
 {
-    public class MinStack
-    {
-        Stack<int> stack = null;
-        Stack<int> minStack = null;
-        public MinStack()
-        {
-            stack = new Stack<int>();
-            minStack = new Stack<int>();
-        }
-
-        public void Push(int val)
-        {
-            if (minStack.Count <= 0)
-                minStack.Push(val);
-            
-
-            if(minStack.Peek() >= val)          
-                minStack.Push(val);
-
-            stack.Push(val);
-        }
-
-        public void Pop()
-        {
-            int val = 0;
-            val = stack.Pop();
-
-            if(minStack.Count > 0 && val == minStack.Peek())
-                minStack.Pop();
-        }
-
-        public int Top()
-        {
-            return stack.Peek();
-        }
-
-        public int GetMin()
-        {
-            return minStack.Peek();
-        }
-    }
     class Program
     {
 
@@ -86,7 +45,6 @@ namespace exerc
 
             //string s = "mischtschenkoana";
             //Console.WriteLine(SolveForHighestNumber(s));
-            #endregion
             //var temp = new int[] { 1, 2, 3 };
             //TwoSum(temp, 4);
 
@@ -100,15 +58,79 @@ namespace exerc
             //var s = new int[] { 5, 25, 75 };
             //TwoSums(s, 100);
             //test
-            var s = new Stack<string>();
-            int val = 3;
-            MinStack obj = new MinStack();
-            obj.Push(val);
-            obj.Pop();
-            int param_3 = obj.Top();
-            int param_4 = obj.GetMin();
-
+            //var s = new Stack<string>();
+            //int val = 3;
+            //MinStack obj = new MinStack();
+            //obj.Push(val);
+            //obj.Pop();
+            //int param_3 = obj.Top();
+            //int param_4 = obj.GetMin();
+            #endregion
+            //var s = new string[] { "4", "13", "5", "/", "+" };
+            //EvalRPN(s);
+            Bubble();
         }
+        public static int EvalRPN(string[] tokens)
+        {
+            var res = new Stack<int>();
+
+            for (int i = 0; i < tokens.Length; i++)
+            {
+                int left;
+                int right;
+
+                switch(tokens[i])
+                {
+                    case "+":
+                        right = res.Pop();
+                        left = res.Pop();
+                        res.Push(left+right);
+                        break;
+                    case "-":
+                        right = res.Pop();
+                        left = res.Pop();
+                        res.Push(left-right);
+                        break;
+                    case "*":
+                        right = res.Pop();
+                        left = res.Pop();
+                        res.Push(left*right);
+                        break;
+                    case "/":
+                        right = res.Pop();
+                        left = res.Pop();
+                        res.Push(left/right);
+                        break;
+                    default:
+                        res.Push(int.Parse(tokens[i]));
+                        break;
+                }
+            }
+            Console.WriteLine(res.Pop());
+            return res.Pop();
+        }
+        public static void Bubble()
+        {
+            var s = new int[] { 1, 3, 2 };
+            for (int i = 0; i < s.Length-1; i++)
+            {
+                for (int j = 0; j < s.Length-1; j++)
+                {
+                    if (s[j] > s[j + 1])
+                    {
+
+                    var temp = s[j];
+                    s[j] = s[j + 1];
+                    s[j+1] = temp;
+                    }
+                }
+            }
+            foreach (var x in s)
+            {
+                Console.WriteLine(x);
+            }
+        }
+        #region done
         public static int[] TwoSums(int[] numbers, int target)
         {
             //var res = new int[2];
@@ -181,7 +203,6 @@ namespace exerc
             return max;
         }
 
-        #region done
         /// <summary>
         ///Your task is to make a function that can take any non-negative integer as an argument
         ///and return it with its digits in descending order.Essentially, rearrange the digits
@@ -574,6 +595,47 @@ namespace exerc
             return new ListNode(total % 10, AddTwoNumbers(l1?.next, l2?.next, carry));
         }
         #endregion
+    }
+    public class MinStack
+    {
+        Stack<int> stack = null;
+        Stack<int> minStack = null;
+        public MinStack()
+        {
+            stack = new Stack<int>();
+            minStack = new Stack<int>();
+        }
+
+        public void Push(int val)
+        {
+            if (minStack.Count <= 0)
+                minStack.Push(val);
+            
+
+            if(minStack.Peek() >= val)          
+                minStack.Push(val);
+
+            stack.Push(val);
+        }
+
+        public void Pop()
+        {
+            int val = 0;
+            val = stack.Pop();
+
+            if(minStack.Count > 0 && val == minStack.Peek())
+                minStack.Pop();
+        }
+
+        public int Top()
+        {
+            return stack.Peek();
+        }
+
+        public int GetMin()
+        {
+            return minStack.Peek();
+        }
     }
     public class ListNode
     {
