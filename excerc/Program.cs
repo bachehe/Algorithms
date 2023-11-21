@@ -99,6 +99,7 @@ namespace exerc
 
             //var s = new int[] { 5, 25, 75 };
             //TwoSums(s, 100);
+            //test
             var s = new Stack<string>();
             int val = 3;
             MinStack obj = new MinStack();
