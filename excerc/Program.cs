@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace exerc
@@ -44,13 +46,92 @@ namespace exerc
             //string s = "mischtschenkoana";
             //Console.WriteLine(SolveForHighestNumber(s));
             #endregion
-            var temp = new int[] { 1, 2, 3 };
-            TwoSum(temp, 4);
+            //var temp = new int[] { 1, 2, 3 };
+            //TwoSum(temp, 4);
 
-            LengthOfLongestSubstring("abcabcbb");
+            //LengthOfLongestSubstring("abcabcbb");
+            //var nums = new int[] { 100, 4, 200, 1, 3, 2 };
+            //LongestConsecutive(nums);
+
+            //var s = "0P";
+            //Console.WriteLine(IsPalindrome(s));
+
+            var s = new int[] { 5, 25, 75 };
+            TwoSums(s, 100);
 
         }
-        #region done
+        public static int[] TwoSums(int[] numbers, int target)
+        {
+            //var res = new int[2];
+
+            //for (int i = 0; i < numbers.Length; i++)
+            //{
+            //    for (int j = i+1; j < numbers.Length; j++)
+            //    {
+            //        if (numbers[i] + numbers[j] == target)
+            //        {
+            //            res[0] = i+1;
+            //            res[1] = j + 1;
+            //            return res;
+            //        }
+            //        if (numbers[i] + numbers[j] > target) break;
+            //    }
+            //}
+            //return res;
+
+            int left = 0;
+            int right = numbers.Length - 1;
+            while (left < right)
+            {
+                int sum = numbers[left] + numbers[right];
+                if (sum == target) break;
+                if (sum < target) left++;
+                if (sum > target) right--;
+            }
+            return new int[] { left + 1, right + 1 };
+
+
+        }
+        public static bool IsPalindrome(string s)
+        {
+            var sb = new StringBuilder();
+            var sb2 = new StringBuilder();
+            foreach (var i in s.ToLower().ToCharArray())
+            {
+                if (char.IsLetter(i) || char.IsNumber(i))
+                    sb.Append(i);
+            }
+
+            foreach (var i in sb.ToString().Reverse())
+            {
+                sb2.Append(i);
+            }
+
+            return sb.Equals(sb2);
+        }
+        public static int LongestConsecutive(int[] nums)
+        {
+            var set = new HashSet<int>(nums);
+            int max = 0;
+
+            foreach (var num in nums)
+            {
+                if (!set.Contains(num - 1))
+                {
+                    int current = num;
+                    int streak = 1;
+
+                    while (set.Contains(current + 1))
+                    {
+                        current++;
+                        streak++;
+                    }
+                    max = Math.Max(max, streak);
+                }
+            }
+            Console.WriteLine(max);
+            return max;
+        }
 
         #region done
         /// <summary>
@@ -405,7 +486,7 @@ namespace exerc
             else
                 return z;
         }
-        #endregion,
+
         public static int[] TwoSum(int[] nums, int target)
         {
             for (int i = 0; i < nums.Length; i++)
@@ -444,6 +525,7 @@ namespace exerc
             carry = total / 10;
             return new ListNode(total % 10, AddTwoNumbers(l1?.next, l2?.next, carry));
         }
+        #endregion
     }
     public class ListNode
     {
