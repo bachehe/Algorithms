@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -9,9 +10,12 @@ namespace exerc
 {
     class Program
     {
+        static List<string> resParenthesis = new List<string>();
 
         public static void Main(string[] args)
         {
+            int n = 1;
+            GenerateParenthesis(n);
             #region done
             //OrderByDescInt();
             //Console.WriteLine(Underscore());
@@ -65,11 +69,33 @@ namespace exerc
             //obj.Pop();
             //int param_3 = obj.Top();
             //int param_4 = obj.GetMin();
-            #endregion
             //var s = new string[] { "4", "13", "5", "/", "+" };
             //EvalRPN(s);
-            Bubble();
+            //Bubble();
+            #endregion
         }
+        public static IList<string> GenerateParenthesis(int n)
+        {
+            Recursive(" ", n, 0);
+            foreach (var item in resParenthesis)
+            {
+                Console.WriteLine(item);
+            }
+            return resParenthesis;
+        }
+        public static void Recursive(string current, int remaining, int leftCount)
+        {
+            if(remaining == 0 && leftCount == 0)
+            {
+                resParenthesis.Add(current);
+                return;
+            }
+            if(remaining > 0)
+                Recursive(current + "(", remaining - 1, leftCount+1);
+            if (leftCount > 0)
+                Recursive(current + ")", remaining, leftCount - 1);
+        }
+        #region done
         public static int EvalRPN(string[] tokens)
         {
             var res = new Stack<int>();
@@ -79,27 +105,27 @@ namespace exerc
                 int left;
                 int right;
 
-                switch(tokens[i])
+                switch (tokens[i])
                 {
                     case "+":
                         right = res.Pop();
                         left = res.Pop();
-                        res.Push(left+right);
+                        res.Push(left + right);
                         break;
                     case "-":
                         right = res.Pop();
                         left = res.Pop();
-                        res.Push(left-right);
+                        res.Push(left - right);
                         break;
                     case "*":
                         right = res.Pop();
                         left = res.Pop();
-                        res.Push(left*right);
+                        res.Push(left * right);
                         break;
                     case "/":
                         right = res.Pop();
                         left = res.Pop();
-                        res.Push(left/right);
+                        res.Push(left / right);
                         break;
                     default:
                         res.Push(int.Parse(tokens[i]));
@@ -112,16 +138,16 @@ namespace exerc
         public static void Bubble()
         {
             var s = new int[] { 1, 3, 2 };
-            for (int i = 0; i < s.Length-1; i++)
+            for (int i = 0; i < s.Length - 1; i++)
             {
-                for (int j = 0; j < s.Length-1; j++)
+                for (int j = 0; j < s.Length - 1; j++)
                 {
                     if (s[j] > s[j + 1])
                     {
 
-                    var temp = s[j];
-                    s[j] = s[j + 1];
-                    s[j+1] = temp;
+                        var temp = s[j];
+                        s[j] = s[j + 1];
+                        s[j + 1] = temp;
                     }
                 }
             }
@@ -130,7 +156,6 @@ namespace exerc
                 Console.WriteLine(x);
             }
         }
-        #region done
         public static int[] TwoSums(int[] numbers, int target)
         {
             //var res = new int[2];
@@ -610,9 +635,9 @@ namespace exerc
         {
             if (minStack.Count <= 0)
                 minStack.Push(val);
-            
 
-            if(minStack.Peek() >= val)          
+
+            if (minStack.Peek() >= val)
                 minStack.Push(val);
 
             stack.Push(val);
@@ -623,7 +648,7 @@ namespace exerc
             int val = 0;
             val = stack.Pop();
 
-            if(minStack.Count > 0 && val == minStack.Peek())
+            if (minStack.Count > 0 && val == minStack.Peek())
                 minStack.Pop();
         }
 
