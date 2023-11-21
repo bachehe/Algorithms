@@ -99,6 +99,13 @@ namespace exerc
 
             //var s = new int[] { 5, 25, 75 };
             //TwoSums(s, 100);
+            var s = new Stack<string>();
+            int val = 3;
+            MinStack obj = new MinStack();
+            obj.Push(val);
+            obj.Pop();
+            int param_3 = obj.Top();
+            int param_4 = obj.GetMin();
 
         }
         public static int[] TwoSums(int[] numbers, int target)
