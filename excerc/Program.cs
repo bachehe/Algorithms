@@ -14,8 +14,14 @@ namespace exerc
 
         public static void Main(string[] args)
         {
-            var n = new int[] { 73, 74, 75, 71, 69, 72, 76, 73 };
-            DailyTemperatures(n);
+            //var n = new int[] { 73, 74, 75, 71, 69, 72, 76, 73 };
+            //DailyTemperatures(n);
+
+            var target = 100;
+            var pos = new int[] { 10, 8, 0, 5, 3 };
+            var speed = new int[] { 2, 4, 1, 1, 3 };
+            CarFleet(target, pos, speed);
+
             #region done
             //int n = 1;
             //GenerateParenthesis(n);
@@ -76,6 +82,43 @@ namespace exerc
             //Bubble();
             #endregion
         }
+
+        public static int CarFleet(int target, int[] position, int[] speed)
+        {
+            var fleet = 1;
+            int sl = speed.Length;
+            int pl = position.Length;
+
+            if (pl != sl)
+                return 1;    
+
+            Array.Sort(position, speed, Comparer<int>.Create((b, a) => a - b));
+
+            for (int i = 0; i < sl-1; i++)
+            {
+                if (speed[i] == 0) continue;
+
+                if (speed[i+1] == 0)
+                {
+                    fleet++;
+                    continue;
+                }
+
+                double x = (double)(target - position[i]) / speed[i];
+                double y = (double)(target - position[i + 1]) / speed[i+1];
+
+                if (x < y) fleet++;
+
+                else
+                {
+                    position[i + 1] = position[i];
+                    speed[i + 1] = speed[i];
+                }
+            }
+
+            return fleet;
+        }
+
         public static int[] DailyTemperatures(int[] temperatures)
         {
             var length = temperatures.Length;
