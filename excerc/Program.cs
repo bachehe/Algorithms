@@ -14,9 +14,9 @@ namespace exerc
 
         public static void Main(string[] args)
         {
-            int n = 1;
-            GenerateParenthesis(n);
             #region done
+            //int n = 1;
+            //GenerateParenthesis(n);
             //OrderByDescInt();
             //Console.WriteLine(Underscore());
 
@@ -73,14 +73,22 @@ namespace exerc
             //EvalRPN(s);
             //Bubble();
             #endregion
+            var n = new int[] { 73, 74, 75, 71, 69, 72, 76, 73 };
+            DailyTemperatures(n);
         }
+        public static int[] DailyTemperatures(int[] temperatures)
+        {
+            var length = temperatures.Length;
+            var res = new int[length];
+
+
+            return res;
+        }
+
+        #region done
         public static IList<string> GenerateParenthesis(int n)
         {
             Recursive(" ", n, 0);
-            foreach (var item in resParenthesis)
-            {
-                Console.WriteLine(item);
-            }
             return resParenthesis;
         }
         public static void Recursive(string current, int remaining, int leftCount)
@@ -95,11 +103,9 @@ namespace exerc
             if (leftCount > 0)
                 Recursive(current + ")", remaining, leftCount - 1);
         }
-        #region done
         public static int EvalRPN(string[] tokens)
         {
             var res = new Stack<int>();
-
             for (int i = 0; i < tokens.Length; i++)
             {
                 int left;
