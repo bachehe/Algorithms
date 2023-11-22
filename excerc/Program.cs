@@ -14,6 +14,8 @@ namespace exerc
 
         public static void Main(string[] args)
         {
+            var n = new int[] { 73, 74, 75, 71, 69, 72, 76, 73 };
+            DailyTemperatures(n);
             #region done
             //int n = 1;
             //GenerateParenthesis(n);
@@ -73,14 +75,32 @@ namespace exerc
             //EvalRPN(s);
             //Bubble();
             #endregion
-            var n = new int[] { 73, 74, 75, 71, 69, 72, 76, 73 };
-            DailyTemperatures(n);
         }
         public static int[] DailyTemperatures(int[] temperatures)
         {
             var length = temperatures.Length;
             var res = new int[length];
 
+            for (int i = 0; i < length-1; i++)
+            {
+                if (temperatures[i] < temperatures[i + 1])
+                {
+                    res[i] = 1;
+                    continue;
+                }
+
+                else
+                {
+                    for (int j = i+1; j < length; j++)
+                    {
+                        if (temperatures[i] < temperatures[j])
+                        {
+                            res[i] = j-i;
+                            break;
+                        }
+                    }
+                }
+            }
 
             return res;
         }
