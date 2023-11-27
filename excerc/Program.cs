@@ -17,10 +17,17 @@ namespace exerc
             //var n = new int[] { 73, 74, 75, 71, 69, 72, 76, 73 };
             //DailyTemperatures(n);
 
-            var target = 100;
-            var pos = new int[] { 10, 8, 0, 5, 3 };
-            var speed = new int[] { 2, 4, 1, 1, 3 };
-            CarFleet(target, pos, speed);
+            //var target = 100;
+            //var pos = new int[] { 10, 8, 0, 5, 3 };
+            //var speed = new int[] { 2, 4, 1, 1, 3 };
+            //CarFleet(target, pos, speed);
+
+            //var h = new int[] { 2, 1, 5, 6, 2, 3 };
+
+            //LargestRectangleArea(h);
+
+            var nums = new int[] { -1,0,-1,-1,0,-1,-1,-1,2};
+            ThreeSum(nums);
 
             #region done
             //int n = 1;
@@ -83,6 +90,62 @@ namespace exerc
             #endregion
         }
 
+        public static IList<IList<int>> ThreeSum(int[] nums)
+        {
+            if (nums.Count() < 3) return new List<IList<int>>();
+
+            Array.Sort(nums);
+
+            var res = new List<IList<int>>();
+
+            for (int i = 0; i < nums.Length-2; i++)
+            {
+                if (nums[i] > 0) break;
+
+                if (i > 0 && nums[i] == nums[i - 1]) continue;
+
+                int leftSide = i + 1;
+                int rightSide = nums.Length-1;
+
+                while(leftSide < rightSide)
+                {
+                    int sum = nums[i] + nums[leftSide] + nums[rightSide];
+
+                    if (sum == 0)
+                    {
+                        res.Add(new List<int>() { nums[i], nums[leftSide], nums[rightSide] });
+                        while (leftSide < rightSide && nums[leftSide] == nums[leftSide + 1]) leftSide++; 
+                        while (leftSide < rightSide && nums[rightSide] == nums[rightSide - 1]) rightSide--;
+                        leftSide++;
+                        rightSide--;
+                    }
+                    else if (sum < 0) leftSide++;
+                    else rightSide--;
+                }
+            }
+
+            return res;
+        }
+
+        public static int LargestRectangleArea(int[] heights)
+        {
+            var stack = new Stack<int>();
+
+            for (int i = 0; i < heights.Length - 1; i++)
+            {
+                while (heights[i] - heights[i + 1] > 0)
+                {
+                    i++;
+                    var temp = heights[i] - heights[i + 1];
+                    stack.Push(temp + heights[i + 1]);
+                    if (stack.Count() > heights.Length) break;
+                }
+            }
+            Console.WriteLine(stack.Max());
+
+            return stack.Max();
+        }
+
         public static int CarFleet(int target, int[] position, int[] speed)
         {
             var fleet = 1;
@@ -90,22 +153,22 @@ namespace exerc
             int pl = position.Length;
 
             if (pl != sl)
-                return 1;    
+                return 1;
 
             Array.Sort(position, speed, Comparer<int>.Create((b, a) => a - b));
 
-            for (int i = 0; i < sl-1; i++)
+            for (int i = 0; i < sl - 1; i++)
             {
                 if (speed[i] == 0) continue;
 
-                if (speed[i+1] == 0)
+                if (speed[i + 1] == 0)
                 {
                     fleet++;
                     continue;
                 }
 
                 double x = (double)(target - position[i]) / speed[i];
-                double y = (double)(target - position[i + 1]) / speed[i+1];
+                double y = (double)(target - position[i + 1]) / speed[i + 1];
 
                 if (x < y) fleet++;
 
@@ -124,7 +187,7 @@ namespace exerc
             var length = temperatures.Length;
             var res = new int[length];
 
-            for (int i = 0; i < length-1; i++)
+            for (int i = 0; i < length - 1; i++)
             {
                 if (temperatures[i] < temperatures[i + 1])
                 {
@@ -134,11 +197,11 @@ namespace exerc
 
                 else
                 {
-                    for (int j = i+1; j < length; j++)
+                    for (int j = i + 1; j < length; j++)
                     {
                         if (temperatures[i] < temperatures[j])
                         {
-                            res[i] = j-i;
+                            res[i] = j - i;
                             break;
                         }
                     }
@@ -156,13 +219,13 @@ namespace exerc
         }
         public static void Recursive(string current, int remaining, int leftCount)
         {
-            if(remaining == 0 && leftCount == 0)
+            if (remaining == 0 && leftCount == 0)
             {
                 resParenthesis.Add(current);
                 return;
             }
-            if(remaining > 0)
-                Recursive(current + "(", remaining - 1, leftCount+1);
+            if (remaining > 0)
+                Recursive(current + "(", remaining - 1, leftCount + 1);
             if (leftCount > 0)
                 Recursive(current + ")", remaining, leftCount - 1);
         }
