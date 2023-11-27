@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -14,6 +15,7 @@ namespace exerc
 
         public static void Main(string[] args)
         {
+            #region done
             //var n = new int[] { 73, 74, 75, 71, 69, 72, 76, 73 };
             //DailyTemperatures(n);
 
@@ -26,10 +28,8 @@ namespace exerc
 
             //LargestRectangleArea(h);
 
-            var nums = new int[] { -1,0,-1,-1,0,-1,-1,-1,2};
-            ThreeSum(nums);
-
-            #region done
+            //var nums = new int[] { -1,0,-1,-1,0,-1,-1,-1,2};
+            //ThreeSum(nums);
             //int n = 1;
             //GenerateParenthesis(n);
             //OrderByDescInt();
@@ -88,8 +88,44 @@ namespace exerc
             //EvalRPN(s);
             //Bubble();
             #endregion
+            var heights = new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
+            MaxArea(heights);
+
         }
 
+        public static int MaxArea(int[] height)
+        {
+            int res = 0;
+            int field;
+            int i = 0;
+            int j = height.Length-1;
+            int hj;
+            int hi;
+
+            while (j>i)
+            {
+                hi = height[i];
+                hj = height[j];
+
+                if (hi > hj)
+                {
+                    field = hj * (j - i);
+                    j--;
+                }
+                else
+                {
+                    field = hi * (j - i);
+                    i++;
+                }
+
+                if(field>res) res = field;
+
+            }
+
+            return res;
+        }
+
+        #region done
         public static IList<IList<int>> ThreeSum(int[] nums)
         {
             if (nums.Count() < 3) return new List<IList<int>>();
@@ -126,7 +162,6 @@ namespace exerc
 
             return res;
         }
-
         public static int LargestRectangleArea(int[] heights)
         {
             var stack = new Stack<int>();
@@ -145,7 +180,6 @@ namespace exerc
 
             return stack.Max();
         }
-
         public static int CarFleet(int target, int[] position, int[] speed)
         {
             var fleet = 1;
@@ -181,7 +215,6 @@ namespace exerc
 
             return fleet;
         }
-
         public static int[] DailyTemperatures(int[] temperatures)
         {
             var length = temperatures.Length;
@@ -210,8 +243,6 @@ namespace exerc
 
             return res;
         }
-
-        #region done
         public static IList<string> GenerateParenthesis(int n)
         {
             Recursive(" ", n, 0);
