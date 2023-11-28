@@ -15,10 +15,11 @@ namespace exerc
 
         public static void Main(string[] args)
         {
-            var nums = new int[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
-            Trap(nums);
-
+            var nums = new int[] { 2, 1, 5, 6, 2, 3 };
+            LargestRecangle(nums);
             #region done
+            //var nums = new int[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
+            //Trap(nums);
             //var heights = new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
             //MaxArea(heights);
             //var n = new int[] { 73, 74, 75, 71, 69, 72, 76, 73 };
@@ -95,6 +96,31 @@ namespace exerc
             #endregion
         }
 
+        public static int LargestRecangle(int[] heights)
+        {
+            var res = 0;
+            var stack = new Stack<int>();
+
+            for (int i = 0; i <= heights.Length - 1; i++)
+            {
+                var height = i < heights.Length ? heights[i] : 0;
+
+                while(stack.Any() && heights[stack.Peek()] > height)
+                {
+                    var current = heights[stack.Pop()];
+                    var previous = stack.Count == 0 ? -1 : stack.Peek();
+
+                    res = Math.Max(res, current * (i - 1 - previous));
+                }
+                stack.Push(i);
+            }
+
+            Console.WriteLine(res);
+            return res;
+        }
+
+
+        #region done
         public static int Trap(int[] height)
         {
             int res = 0;
@@ -113,7 +139,7 @@ namespace exerc
             }
 
             current = 0;
-            for (int i = height.Length-1; i >= 0; i--)
+            for (int i = height.Length - 1; i >= 0; i--)
             {
                 if (height[i] == max) break;
 
@@ -124,8 +150,6 @@ namespace exerc
 
             return res;
         }
-
-        #region done
         public static int MaxArea(int[] height)
         {
             int res = 0;
@@ -769,10 +793,7 @@ namespace exerc
         /// <returns></returns>
         public static int max(int x, int z)
         {
-            if (x > z)
-                return x;
-            else
-                return z;
+            return z > x ? z : x;
         }
 
         public static int[] TwoSum(int[] nums, int target)
