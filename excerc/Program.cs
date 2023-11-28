@@ -115,7 +115,6 @@ namespace exerc
                 stack.Push(i);
             }
 
-            Console.WriteLine(res);
             return res;
         }
 
