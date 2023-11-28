@@ -15,7 +15,13 @@ namespace exerc
 
         public static void Main(string[] args)
         {
+            var nums = new int[] { 2, 1, 5, 6, 2, 3 };
+            LargestRecangle(nums);
             #region done
+            //var nums = new int[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
+            //Trap(nums);
+            //var heights = new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
+            //MaxArea(heights);
             //var n = new int[] { 73, 74, 75, 71, 69, 72, 76, 73 };
             //DailyTemperatures(n);
 
@@ -88,21 +94,71 @@ namespace exerc
             //EvalRPN(s);
             //Bubble();
             #endregion
-            var heights = new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
-            MaxArea(heights);
-
         }
 
+        public static int LargestRecangle(int[] heights)
+        {
+            var res = 0;
+            var stack = new Stack<int>();
+
+            for (int i = 0; i <= heights.Length - 1; i++)
+            {
+                var height = i < heights.Length ? heights[i] : 0;
+
+                while(stack.Any() && heights[stack.Peek()] > height)
+                {
+                    var current = heights[stack.Pop()];
+                    var previous = stack.Count == 0 ? -1 : stack.Peek();
+
+                    res = Math.Max(res, current * (i - 1 - previous));
+                }
+                stack.Push(i);
+            }
+
+            return res;
+        }
+
+
+        #region done
+        public static int Trap(int[] height)
+        {
+            int res = 0;
+            int max = 0;
+
+            int current = 0;
+            for (int i = 0; i < height.Length; i++)
+            {
+                if (height[i] > max) max = height[i];
+
+                if (height[i] > current) current = height[i];
+                else if (height[i] < current)
+                {
+                    res += current - height[i];
+                }
+            }
+
+            current = 0;
+            for (int i = height.Length - 1; i >= 0; i--)
+            {
+                if (height[i] == max) break;
+
+                if (height[i] > current) current = height[i];
+
+                res -= max - current;
+            }
+
+            return res;
+        }
         public static int MaxArea(int[] height)
         {
             int res = 0;
             int field;
             int i = 0;
-            int j = height.Length-1;
+            int j = height.Length - 1;
             int hj;
             int hi;
 
-            while (j>i)
+            while (j > i)
             {
                 hi = height[i];
                 hj = height[j];
@@ -118,14 +174,12 @@ namespace exerc
                     i++;
                 }
 
-                if(field>res) res = field;
+                if (field > res) res = field;
 
             }
 
             return res;
         }
-
-        #region done
         public static IList<IList<int>> ThreeSum(int[] nums)
         {
             if (nums.Count() < 3) return new List<IList<int>>();
@@ -134,23 +188,23 @@ namespace exerc
 
             var res = new List<IList<int>>();
 
-            for (int i = 0; i < nums.Length-2; i++)
+            for (int i = 0; i < nums.Length - 2; i++)
             {
                 if (nums[i] > 0) break;
 
                 if (i > 0 && nums[i] == nums[i - 1]) continue;
 
                 int leftSide = i + 1;
-                int rightSide = nums.Length-1;
+                int rightSide = nums.Length - 1;
 
-                while(leftSide < rightSide)
+                while (leftSide < rightSide)
                 {
                     int sum = nums[i] + nums[leftSide] + nums[rightSide];
 
                     if (sum == 0)
                     {
                         res.Add(new List<int>() { nums[i], nums[leftSide], nums[rightSide] });
-                        while (leftSide < rightSide && nums[leftSide] == nums[leftSide + 1]) leftSide++; 
+                        while (leftSide < rightSide && nums[leftSide] == nums[leftSide + 1]) leftSide++;
                         while (leftSide < rightSide && nums[rightSide] == nums[rightSide - 1]) rightSide--;
                         leftSide++;
                         rightSide--;
@@ -738,10 +792,7 @@ namespace exerc
         /// <returns></returns>
         public static int max(int x, int z)
         {
-            if (x > z)
-                return x;
-            else
-                return z;
+            return z > x ? z : x;
         }
 
         public static int[] TwoSum(int[] nums, int target)
