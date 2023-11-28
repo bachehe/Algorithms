@@ -15,9 +15,13 @@ namespace exerc
 
         public static void Main(string[] args)
         {
-            var nums = new int[] { 2, 4 };
-            LargestRecangle(nums);
+            var nums = new int[] { -1, 0, 3, 5, 9, 12 };
+            var target = 0;
+            Console.WriteLine(Search(nums, target));
+            
             #region done
+            //var nums = new int[] { 2, 4 };
+            //LargestRecangle(nums);
             //var nums = new int[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
             //Trap(nums);
             //var heights = new int[] { 1, 8, 6, 2, 5, 4, 8, 3, 7 };
@@ -95,7 +99,9 @@ namespace exerc
             //Bubble();
             #endregion
         }
+        public static int Search(int[] nums, int target) => Array.IndexOf(nums, target);
 
+        #region done
         public static int LargestRecangle(int[] heights)
         {
             int res = 0;
@@ -118,9 +124,6 @@ namespace exerc
 
             return res;
         }
-
-
-        #region done
         public static int Trap(int[] height)
         {
             int res = 0;
