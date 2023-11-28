@@ -15,7 +15,7 @@ namespace exerc
 
         public static void Main(string[] args)
         {
-            var nums = new int[] { 2, 1, 5, 6, 2, 3 };
+            var nums = new int[] { 2, 4 };
             LargestRecangle(nums);
             #region done
             //var nums = new int[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
@@ -98,20 +98,21 @@ namespace exerc
 
         public static int LargestRecangle(int[] heights)
         {
-            var res = 0;
+            int res = 0;
             var stack = new Stack<int>();
 
-            for (int i = 0; i <= heights.Length - 1; i++)
+            for (int i = 0; i <= heights.Length; i++)
             {
                 var height = i < heights.Length ? heights[i] : 0;
 
-                while(stack.Any() && heights[stack.Peek()] > height)
+                while (stack.Any() && heights[stack.Peek()] > height)
                 {
-                    var current = heights[stack.Pop()];
-                    var previous = stack.Count == 0 ? -1 : stack.Peek();
+                    var currHeight = heights[stack.Pop()];
+                    var prevIndex = stack.Count == 0 ? -1 : stack.Peek();
 
-                    res = Math.Max(res, current * (i - 1 - previous));
+                    res = Math.Max(res, currHeight * (i - 1 - prevIndex));
                 }
+
                 stack.Push(i);
             }
 
