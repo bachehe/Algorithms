@@ -15,15 +15,17 @@ namespace exerc
 
         public static void Main(string[] args)
         {
+            var piles = new int[] { 30, 11, 23, 4, 20 };
+            MinEatingSpeed(piles, 5);
+            #region done
             //var nums = new int[] { -1, 0, 3, 5, 9, 12 };
             //var target = 0;
             //Console.WriteLine(Search(nums, target));
 
-            var matrix = new int[][] { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 } };
-            var target = 3;
-            Console.WriteLine(SearchMatrix(matrix, target));
+            //var matrix = new int[][] { new int[] { 1, 2, 3 }, new int[] { 4, 5, 6 } };
+            //var target = 3;
+            //Console.WriteLine(SearchMatrix(matrix, target));
 
-            #region done
             //var nums = new int[] { 2, 4 };
             //LargestRecangle(nums);
             //var nums = new int[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
@@ -103,7 +105,28 @@ namespace exerc
             //Bubble();
             #endregion
         }
+        public static int MinEatingSpeed(int[] piles, int h)
+        {
+            var kmin = 1;
+            var kmax = piles.Max();
 
+            while (kmax > kmin)
+            {
+                int mid = kmin + (kmax - kmin) / 2;
+                int totalHours = 0;
+
+                foreach (int pile in piles)
+                    totalHours += (int)Math.Ceiling((double)pile / mid);
+                
+                if(totalHours <= h) kmax = mid;
+                
+                else kmin = mid + 1;
+            }
+
+            Console.WriteLine(kmin);
+            return kmin;
+        }
+        #region done
         public static bool SearchMatrix(int[][] matrix, int target)
         {
             for (int i = 0; i < matrix.Length; i++)
@@ -117,7 +140,6 @@ namespace exerc
             return false;
         }
         public static int Search(int[] nums, int target) => Array.IndexOf(nums, target);
-        #region done
         public static int LargestRecangle(int[] heights)
         {
             int res = 0;
@@ -464,14 +486,11 @@ namespace exerc
             Console.WriteLine(max);
             return max;
         }
-
         /// <summary>
         ///Your task is to make a function that can take any non-negative integer as an argument
         ///and return it with its digits in descending order.Essentially, rearrange the digits
         ///to create the highest possible number.Examples:Input: 42145 Output: 54421
         /// </summary>
-
-
         public static int OrderByDescInt()
         {
             var num = 42145;
@@ -484,7 +503,6 @@ namespace exerc
             Console.WriteLine(nms);
             return Convert.ToInt32(nms);
         }
-
         /// <summary>
         /// Add udnerscore under every char in given sequence
         /// </summary>
@@ -494,7 +512,6 @@ namespace exerc
             var s = "abcdef";
             return s.SelectMany((x, i) => i % 2 == 0 ? new string[] { $"{x}{(i < s.Length - 1 ? s[i + 1] : '_')}" } : new string[0]).ToArray();
         }
-
         /// <summary>
         /// You are given an array (which will have a length of at least 3, but could be very large) containing integers. The array is either 
         /// entirely comprised of odd integers or entirely comprised of even ///integers except for a single integer N. Write a method that takes the array as an argument and returns this "outlier" N.
@@ -577,7 +594,6 @@ namespace exerc
             }
             Console.WriteLine("-----------");
         }
-
         /// <summary>
         /// Create a function that takes a Roman numeral as its argument and returns its value as 
         /// a numeric decimal integer. You don't need to validate the form of the Roman numeral.
@@ -607,7 +623,6 @@ namespace exerc
             }
             return result;
         }
-
         /// <summary>
         /// Implement the function which takes an array containing the names of people that like an item. It must return the display text as shown in the examples:
         /// </summary>
@@ -648,7 +663,6 @@ namespace exerc
 
             return string.Empty;
         }
-
         /// <summary>
         /// You will be given a number and you will need to return it as a string in Expanded Form. For example:
         /// 12 = "10+2"
@@ -662,7 +676,6 @@ namespace exerc
                 .Select((x, i) => char.GetNumericValue(x) * Math.Pow(10, str.Length - i - 1))
                 .Where(x => x > 0));
         }
-
         /// <summary>
         /// He thinks he can save $1000 each month but the prices of his old car and of the new one decrease of 1.5 percent per month. 
         /// Furthermore this percent of loss increases of 0.5 percent at the end of every two months. Our man finds it difficult to make all these calculations.
@@ -690,7 +703,6 @@ namespace exerc
 
             return new int[] { month, (int)(Math.Round(savings - priceNew)) };
         }
-
         /// <summary>
         /// Write a function that accepts a string, and returns true if it is in the form of a phone number.
         ///Assume that any integer from 0-9 in any of the spots will produce a valid phone number.
@@ -709,8 +721,6 @@ namespace exerc
 
             //return Regex.IsMatch(phoneNumber, @"^\(\d{3}\) \d{3}-\d{4}\z");
         }
-
-
         /// <summary>
         /// Given an array (arr) as an argument complete the function countSmileys that should return the total number of smiling faces.
         /// </summary>
@@ -733,7 +743,6 @@ namespace exerc
 
             return i;
         }
-
         /// <summary>
         /// XD
         /// </summary>
@@ -777,7 +786,6 @@ namespace exerc
                 return 0;
 
         }
-
         /// <summary>
         /// Given a lowercase string that has alphabetic characters only and no spaces,
         /// return the highest value of consonant substrings. Consonants are any letters of the alphabet except "aeiou".
@@ -814,7 +822,6 @@ namespace exerc
         {
             return z > x ? z : x;
         }
-
         public static int[] TwoSum(int[] nums, int target)
         {
             for (int i = 0; i < nums.Length; i++)
@@ -827,7 +834,6 @@ namespace exerc
             }
             return new int[] { };
         }
-
         public static int LengthOfLongestSubstring(string s)
         {
             var word = string.Empty;
