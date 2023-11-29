@@ -18,8 +18,12 @@ namespace exerc
             //var piles = new int[] { 30, 11, 23, 4, 20 };
             //MinEatingSpeed(piles, 5);
 
-            var nums = new int[] { 3, 4, 1, 2 };
-            FindMin(nums);
+            //var nums = new int[] { 3, 4, 1, 2 };
+            //FindMin(nums);
+
+            var nums = new int[] { 5, 1, 3 };
+            Console.WriteLine(Searching(nums, 5));
+
 
             #region done
             //var nums = new int[] { -1, 0, 3, 5, 9, 12 };
@@ -109,6 +113,38 @@ namespace exerc
             //Bubble();
             #endregion
         }
+        public static int Searching(int[] nums, int target)
+        {
+            int l = 0;
+            int r = nums.Length - 1;
+
+            while (l <= r)
+            {
+                int mid = l + (r - l) / 2;
+
+                if (nums[mid] == target)
+                {
+                    return mid;
+                }
+
+                if (nums[l] <= nums[mid])
+                {
+                    if (nums[l] <= target && target < nums[mid]) r = mid - 1;
+
+                    else l = mid + 1;
+
+                }
+                else
+                {
+                    if (nums[mid] < target && target <= nums[r]) l = mid + 1;
+
+                    else r = mid - 1;
+
+                }
+            }
+
+            return -1; 
+        }
         public static int FindMin(int[] nums)
         {
             var l = 0;
@@ -117,7 +153,7 @@ namespace exerc
             while (l < r)
             {
 
-                int mid = (l+r) / 2;
+                int mid = (l + r) / 2;
                 if (nums[mid] > nums[r])
                 {
                     l = mid + 1;
