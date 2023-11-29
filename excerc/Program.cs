@@ -15,8 +15,12 @@ namespace exerc
 
         public static void Main(string[] args)
         {
-            var piles = new int[] { 30, 11, 23, 4, 20 };
-            MinEatingSpeed(piles, 5);
+            //var piles = new int[] { 30, 11, 23, 4, 20 };
+            //MinEatingSpeed(piles, 5);
+
+            var nums = new int[] { 3, 4, 1, 2 };
+            FindMin(nums);
+
             #region done
             //var nums = new int[] { -1, 0, 3, 5, 9, 12 };
             //var target = 0;
@@ -105,6 +109,28 @@ namespace exerc
             //Bubble();
             #endregion
         }
+        public static int FindMin(int[] nums)
+        {
+            var l = 0;
+            var r = nums.Length - 1;
+
+            while (l < r)
+            {
+
+                int mid = (l+r) / 2;
+                if (nums[mid] > nums[r])
+                {
+                    l = mid + 1;
+                }
+                else
+                {
+                    r = mid;
+                }
+            }
+
+            return nums[l];
+        }
+
         public static int MinEatingSpeed(int[] piles, int h)
         {
             var kmin = 1;
@@ -117,13 +143,12 @@ namespace exerc
 
                 foreach (int pile in piles)
                     totalHours += (int)Math.Ceiling((double)pile / mid);
-                
-                if(totalHours <= h) kmax = mid;
-                
+
+                if (totalHours <= h) kmax = mid;
+
                 else kmin = mid + 1;
             }
 
-            Console.WriteLine(kmin);
             return kmin;
         }
         #region done
