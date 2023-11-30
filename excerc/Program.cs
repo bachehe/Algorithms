@@ -15,17 +15,16 @@ namespace exerc
 
         public static void Main(string[] args)
         {
+            #region done
             //var piles = new int[] { 30, 11, 23, 4, 20 };
             //MinEatingSpeed(piles, 5);
 
             //var nums = new int[] { 3, 4, 1, 2 };
             //FindMin(nums);
 
-            var nums = new int[] { 5, 1, 3 };
-            Console.WriteLine(Searching(nums, 5));
+            //var nums = new int[] { 5, 1, 3 };
+            //Console.WriteLine(Searching(nums, 5));
 
-
-            #region done
             //var nums = new int[] { -1, 0, 3, 5, 9, 12 };
             //var target = 0;
             //Console.WriteLine(Search(nums, target));
@@ -113,6 +112,7 @@ namespace exerc
             //Bubble();
             #endregion
         }
+        #region done
         public static int Searching(int[] nums, int target)
         {
             int l = 0;
@@ -166,7 +166,6 @@ namespace exerc
 
             return nums[l];
         }
-
         public static int MinEatingSpeed(int[] piles, int h)
         {
             var kmin = 1;
@@ -187,7 +186,6 @@ namespace exerc
 
             return kmin;
         }
-        #region done
         public static bool SearchMatrix(int[][] matrix, int target)
         {
             for (int i = 0; i < matrix.Length; i++)
