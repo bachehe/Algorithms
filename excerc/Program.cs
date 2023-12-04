@@ -15,7 +15,14 @@ namespace exerc
 
         public static void Main(string[] args)
         {
-            //test
+            string key = "tg";
+            string value = "dop";
+            int timestamp = 0;
+
+            var obj = new TimeMap();
+            obj.Set(key, value, timestamp);
+            var p2 = obj.Get(key, timestamp);
+            Console.WriteLine(p2);
             #region done
             //var piles = new int[] { 30, 11, 23, 4, 20 };
             //MinEatingSpeed(piles, 5);
@@ -113,6 +120,7 @@ namespace exerc
             //Bubble();
             #endregion
         }
+
         #region done
         public static int Searching(int[] nums, int target)
         {
@@ -920,6 +928,44 @@ namespace exerc
             return new ListNode(total % 10, AddTwoNumbers(l1?.next, l2?.next, carry));
         }
         #endregion
+    }
+    public class TimeMap
+    {
+        private Dictionary<string, List<(int Version, string Value)>> _map = new();
+        public TimeMap() {}
+
+        public void Set(string key, string value, int timestamp)
+        {
+            if (_map.ContainsKey(key))
+                _map[key].Add((timestamp, value));
+            
+            else
+                _map[key] = new List<(int Version, string Value)>() { (timestamp, value) };         
+        }
+
+        public string Get(string key, int timestamp)
+        {
+            if(!_map.ContainsKey(key)) 
+                return string.Empty;
+
+            var vals = _map[key];
+
+            var l = 0;
+            var r = vals.Count - 1;
+
+            while(l <= r)
+            {
+                var mid = (r - l) / 2;
+
+                if (vals[mid].Version == timestamp)
+                    return vals[mid].Value;
+                else if (vals[mid].Version > timestamp)
+                    r = mid - 1;
+                else l = mid + 1;
+            }
+
+            return l == 0 ? string.Empty : vals[l-1].Value;
+        }
     }
     public class MinStack
     {
