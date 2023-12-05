@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace exerc
 {
@@ -15,14 +16,18 @@ namespace exerc
 
         public static void Main(string[] args)
         {
-            string key = "tg";
-            string value = "dop";
-            int timestamp = 0;
+            //string key = "tg";
+            //string value = "dop";
+            //int timestamp = 0;
 
-            var obj = new TimeMap();
-            obj.Set(key, value, timestamp);
-            var p2 = obj.Get(key, timestamp);
-            Console.WriteLine(p2);
+            //var obj = new TimeMap();
+            //obj.Set(key, value, timestamp);
+            //var p2 = obj.Get(key, timestamp);
+            //Console.WriteLine(p2);
+
+            var n1 = new int[] { 1, 2 };
+            var n2 = new int[] { 3,4  };
+            FindMedianSortedArrays(n1, n2);
             #region done
             //var piles = new int[] { 30, 11, 23, 4, 20 };
             //MinEatingSpeed(piles, 5);
@@ -120,7 +125,50 @@ namespace exerc
             //Bubble();
             #endregion
         }
+        public static double FindMedianSortedArrays(int[] nums1, int[] nums2)
+        {
+            var res = 0d;
+            int x = nums1.Length;
+            int y = nums2.Length;
+            int low = 0, high = x;
 
+            if (x > y)
+            {
+                int[] temp = nums1;
+                nums1 = nums2;
+                nums2 = temp;
+            }
+
+            while (low <= high)
+            {
+                int mid = (low + high) / 2;
+                int partY = (x + y + 1) / 2 - mid;
+
+                int maxX = (mid == 0) ? int.MinValue : nums1[mid - 1];
+                int minX = (mid == x) ? int.MaxValue : nums1[mid];
+
+                int maxY = (partY == 0) ? int.MinValue : nums2[partY -1];
+                int minY = (partY == y) ? int.MaxValue : nums2[partY];
+
+                if (maxX <= minY && maxY <= minX)
+                {
+                    if ((x + y) % 2 == 0) 
+                    {
+                        res = (double)(Math.Max(maxX, maxY)) + Math.Min(minX, minY);
+                        break;
+                    }
+                    else
+                    {
+                        res = (double)Math.Min(maxX, minY);
+                        break;
+                    }
+                }
+                else if (maxX > minX) high = mid - 1;
+                else low = mid + 1;
+            }
+            Console.WriteLine(res);
+            return res;
+        }
         #region done
         public static int Searching(int[] nums, int target)
         {
@@ -471,7 +519,6 @@ namespace exerc
                 {
                     if (s[j] > s[j + 1])
                     {
-
                         var temp = s[j];
                         s[j] = s[j + 1];
                         s[j + 1] = temp;
@@ -931,24 +978,24 @@ namespace exerc
     }
     public class TimeMap
     {
-        private Dictionary<string, List<(int Version, string Value)>> _map = new();
+        private Dictionary<string, List<(int Version, string Value)>> _mapper = new();
         public TimeMap() {}
 
         public void Set(string key, string value, int timestamp)
         {
-            if (_map.ContainsKey(key))
-                _map[key].Add((timestamp, value));
+            if (_mapper.ContainsKey(key))
+                _mapper[key].Add((timestamp, value));
             
             else
-                _map[key] = new List<(int Version, string Value)>() { (timestamp, value) };         
+                _mapper[key] = new List<(int Version, string Value)>() { (timestamp, value) };         
         }
 
         public string Get(string key, int timestamp)
         {
-            if(!_map.ContainsKey(key)) 
+            if(!_mapper.ContainsKey(key)) 
                 return string.Empty;
 
-            var vals = _map[key];
+            var vals = _mapper[key];
 
             var l = 0;
             var r = vals.Count - 1;
