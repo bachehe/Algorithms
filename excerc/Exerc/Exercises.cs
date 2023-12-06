@@ -9,6 +9,12 @@ namespace exerc
         static List<string> resParenthesis = new List<string>();
 
         #region done
+        public static int LengthOfLongestSubstringSliding(string s)
+        {
+            var res = 0;
+
+            return res;
+        }
         public static int MaxProfit(int[] prices)
         {
             int res = 0, profit = 0, buy = 0;
