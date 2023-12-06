@@ -223,7 +223,7 @@ namespace exerc
         }
         public static IList<IList<int>> ThreeSum(int[] nums)
         {
-            if (nums.Count() < 3) return new List<IList<int>>();
+            if (nums.Length < 3) return new List<IList<int>>();
 
             Array.Sort(nums);
 
