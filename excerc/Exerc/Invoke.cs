@@ -4,6 +4,9 @@
     {
         public void Invoker()
         {
+            //var nums = new int[] { 7, 1, 5, 3, 6, 4 };
+            //MaxProfit(nums);
+           // Bubble();
             #region done
             //string key = "tg";
             //string value = "dop";
@@ -111,7 +114,6 @@
             //var s = new string[] { "4", "13", "5", "/", "+" };
             //EvalRPN(s);
             #endregion
-            Bubble();
         }
     }
 }

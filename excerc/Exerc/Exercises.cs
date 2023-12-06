@@ -9,6 +9,26 @@ namespace exerc
         static List<string> resParenthesis = new List<string>();
 
         #region done
+        public static int MaxProfit(int[] prices)
+        {
+            int res = 0, profit = 0, buy = 0;
+            int sell = 1;
+
+            while (sell < prices.Length)
+            {
+                profit = prices[sell] - prices[buy];
+                if (profit <= 0) 
+                    buy = sell;
+                else
+                {
+                    if (profit > res) res = profit;
+                } 
+                
+                sell++;
+            }
+            Console.WriteLine(res);
+            return res;
+        }
         public static double FindMedianSortedArrays(int[] nums1, int[] nums2)
         {
             var res = 0d;
