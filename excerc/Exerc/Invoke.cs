@@ -5,7 +5,7 @@
         public void Invoker()
         {
             string s = "abcabcbb";
-            LengthOfLongestSubstringSliding(s);
+            //LengthOfLongestSubstringSliding(s);
             #region done
             //var nums = new int[] { 7, 1, 5, 3, 6, 4 };
             //MaxProfit(nums);
