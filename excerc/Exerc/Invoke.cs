@@ -4,6 +4,7 @@
     {
         public void Invoker()
         {
+            Bubuel();
             string s = "abcabcbb";
             //LengthOfLongestSubstringSliding(s);
             #region done
