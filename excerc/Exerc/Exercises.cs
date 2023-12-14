@@ -8,6 +8,27 @@ namespace exerc
     {
         static List<string> resParenthesis = new List<string>();
 
+        public static void Bubuel()
+        {
+            var ints = new[] { 1, 2, 4, 3 };
+            for (int i = 0; i < ints.Length; i++)
+            {
+                for (int j = 0; j < ints.Length-1; j++)
+                {
+                    if (ints[j] < ints[j+1])
+                    {
+                        var temp = ints[j];
+                        ints[j] = ints[j+1];
+                        ints[j + 1] = temp;
+                    }
+                }
+            }
+            foreach (var item in ints)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
         #region done
         //public static int LengthOfLongestSubstringSliding(string s)
         //{
