@@ -1,11 +1,24 @@
-﻿namespace exerc
+﻿using excerc.Exerc;
+
+namespace exerc
 {
     public class Invoke : Exercises
     {
         public void Invoker()
         {
-            Bubuel();
-            string s = "abcabcbb";
+            ListNode node = new();
+            node.val = 1;
+            node.val = 2;
+            node.val = 3;
+            node.val = 4;
+            node.val = 5;
+            ReverseList(node);
+
+
+
+
+            //Bubuel();
+            //string s = "abcabcbb";
             //LengthOfLongestSubstringSliding(s);
             #region done
             //var nums = new int[] { 7, 1, 5, 3, 6, 4 };
