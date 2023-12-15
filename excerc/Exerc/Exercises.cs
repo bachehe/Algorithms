@@ -8,17 +8,33 @@ namespace exerc
     {
         static List<string> resParenthesis = new List<string>();
 
+        #region nodes
+        public static ListNode ReverseList(ListNode head)
+        {
+            ListNode node = null;
+
+            while (head != null)
+            {
+                node = new ListNode(head.val, node);
+                head = head.next;
+            }
+
+            return node;
+        }
+        #endregion nodes
+
+        #region done
         public static void Bubuel()
         {
             var ints = new[] { 1, 2, 4, 3 };
             for (int i = 0; i < ints.Length; i++)
             {
-                for (int j = 0; j < ints.Length-1; j++)
+                for (int j = 0; j < ints.Length - 1; j++)
                 {
-                    if (ints[j] < ints[j+1])
+                    if (ints[j] < ints[j + 1])
                     {
                         var temp = ints[j];
-                        ints[j] = ints[j+1];
+                        ints[j] = ints[j + 1];
                         ints[j + 1] = temp;
                     }
                 }
@@ -29,13 +45,6 @@ namespace exerc
             }
         }
 
-        #region done
-        //public static int LengthOfLongestSubstringSliding(string s)
-        //{
-        //    var res = 0;
-
-        //    return res;
-        //}
         public static int MaxProfit(int[] prices)
         {
             int res = 0, profit = 0, buy = 0;
@@ -44,13 +53,13 @@ namespace exerc
             while (sell < prices.Length)
             {
                 profit = prices[sell] - prices[buy];
-                if (profit <= 0) 
+                if (profit <= 0)
                     buy = sell;
                 else
                 {
                     if (profit > res) res = profit;
-                } 
-                
+                }
+
                 sell++;
             }
             Console.WriteLine(res);
