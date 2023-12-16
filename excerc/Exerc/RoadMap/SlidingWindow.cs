@@ -22,7 +22,6 @@ namespace excerc.Exerc.RoadMap
                 {
                     if (profit > res) res = profit;
                 }
-
                 sell++;
             }
             Console.WriteLine(res);
