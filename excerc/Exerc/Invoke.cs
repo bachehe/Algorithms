@@ -7,6 +7,9 @@ namespace exerc
     {
         public void Invoker()
         {
+            Console.WriteLine(CheckInclusion("ab", "eidbaooo"));
+            
+
             //string s = "abcabcbb";
             //LengthOfLongestSubstringSliding(s);
             #region done

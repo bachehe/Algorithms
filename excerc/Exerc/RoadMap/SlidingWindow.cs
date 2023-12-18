@@ -8,6 +8,36 @@ namespace excerc.Exerc.RoadMap
 {
     public class SlidingWindow
     {
+        public bool CheckInclusion(string s1, string s2)
+        {
+            if (s1.Length > s2.Length) return false;
+
+            var hashS1 = 0.0;
+            var hashS2 = 0.0;
+
+            for (int i = 0; i < s1.Length; i++)
+            {
+                hashS1 += s1[i] * Math.Pow(2, s1[i]);
+                hashS2 += s2[i] * Math.Pow(2, s2[i]);
+            }
+
+            var l = 0;
+            var r = s1.Length;
+
+            while (r < s2.Length)
+            {
+                if (hashS1 == hashS2) return true;
+
+                hashS2 -= s2[l] * Math.Pow(2, s2[l]);
+                hashS2 += s2[r] * Math.Pow(2, s2[r]);
+                l++;
+                r++;
+            }
+            if (hashS1 == hashS2)
+                return true;
+
+            return false;
+        }
         public int CharacterReplacement(string s, int k)
         {
             var dict = new Dictionary<char, int>();
