@@ -7,7 +7,6 @@ namespace exerc
     {
         public void Invoker()
         {
-            Console.WriteLine(CharacterReplacement("ABAB", 2)); 
             //string s = "abcabcbb";
             //LengthOfLongestSubstringSliding(s);
             #region done
