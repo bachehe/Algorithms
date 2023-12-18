@@ -1,11 +1,13 @@
 ﻿using excerc.Exerc;
+using excerc.Exerc.RoadMap;
 
 namespace exerc
 {
     public class Invoke : Exercises
     {
         public void Invoker()
-        { 
+        {
+            Console.WriteLine(CharacterReplacement("ABAB", 2)); 
             //string s = "abcabcbb";
             //LengthOfLongestSubstringSliding(s);
             #region done
