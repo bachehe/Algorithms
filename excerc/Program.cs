@@ -12,7 +12,7 @@ namespace exerc
     {
         public static void Main(string[] args)
         {
-            //invoking methods
+            //invoke
             var invoke = new Invoke();
             invoke.Invoker();
         }   
