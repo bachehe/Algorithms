@@ -6,7 +6,7 @@ namespace exerc
 {
     public class Exercises
     {
-
+       
         public static void Bubble()
         {
             var s = new int[] { 1, 3, 2 };
