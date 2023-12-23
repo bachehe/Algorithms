@@ -6,9 +6,7 @@ namespace exerc
     public class Invoke : Exercises
     {
         public void Invoker()
-        {
-            Console.WriteLine(CheckInclusion("ab", "eidbaooo"));
-            
+        {             
 
             //string s = "abcabcbb";
             //LengthOfLongestSubstringSliding(s);
