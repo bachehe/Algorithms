@@ -6,9 +6,9 @@ namespace exerc
     public class Invoke : Exercises
     {
         public void Invoker()
-        {             
+        {
 
-            //string s = "abcabcbb";
+            string s = "abcabcbb";
             //LengthOfLongestSubstringSliding(s);
             #region done
             //var nums = new int[] { 7, 1, 5, 3, 6, 4 };
