@@ -39,7 +39,7 @@ namespace excerc.Exerc.RoadMap
         }
         public static ListNode ReverseList(ListNode head)
         {
-            //ndes
+            //nodes
             ListNode node = null;
 
             while (head != null)
