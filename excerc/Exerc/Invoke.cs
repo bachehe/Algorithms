@@ -7,8 +7,8 @@ namespace exerc
     {
         public void Invoker()
         {
-            var nums = new int[] { 2, 2, 1 };
-            
+            var nums = new int[] { 6, 6, 6, 7, 7 };
+            MajorityElement(nums);
             //LengthOfLongestSubstringSliding(s);
             #region done
             //var nums = new int[] { 7, 1, 5, 3, 6, 4 };
