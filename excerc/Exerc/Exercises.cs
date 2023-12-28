@@ -6,10 +6,18 @@ namespace exerc
 {
     public class Exercises
     {
+        public static int MajorityElement(int[] nums)
+        {
+            return nums.GroupBy(i => i)
+                .OrderByDescending(g => g.Count())
+                .Take(1)
+                .Select(g => g.Key)
+                .First();
+        }
         public static int SingleNumber(int[] nums)
         {
             Array.Sort(nums);
-            for (int i = 0; i < nums.Length; i=i+2)
+            for (int i = 0; i < nums.Length; i = i + 2)
             {
                 if (i == nums.Length - 1) return nums[i];
                 if (nums[i] != nums[i + 1]) return nums[i];
