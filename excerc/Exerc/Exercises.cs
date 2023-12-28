@@ -6,6 +6,30 @@ namespace exerc
 {
     public class Exercises
     {
+        public static bool IsHappy(int n)
+        {
+            var set = new HashSet<int>();
+
+            while (n != 1)
+            {
+                string str = n.ToString();
+                int sum = 0;
+
+                foreach (char c in str)
+                {
+                    int digit = c - '0';
+                    sum += digit * digit;
+                }
+
+                if (set.Contains(sum))
+                    return false;
+
+                set.Add(sum);
+                n = sum;
+            }
+
+            return true;
+        }
         public static int MajorityElement(int[] nums)
         {
             return nums.GroupBy(i => i)
