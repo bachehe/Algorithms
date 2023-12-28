@@ -6,7 +6,16 @@ namespace exerc
 {
     public class Exercises
     {
-       
+        public static int SingleNumber(int[] nums)
+        {
+            Array.Sort(nums);
+            for (int i = 0; i < nums.Length; i=i+2)
+            {
+                if (i == nums.Length - 1) return nums[i];
+                if (nums[i] != nums[i + 1]) return nums[i];
+            }
+            return 0;
+        }
         public static void Bubble()
         {
             var s = new int[] { 1, 3, 2 };

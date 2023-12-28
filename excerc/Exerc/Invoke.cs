@@ -7,7 +7,8 @@ namespace exerc
     {
         public void Invoker()
         {
-            string s = "abcabcbb";
+            var nums = new int[] { 2, 2, 1 };
+            
             //LengthOfLongestSubstringSliding(s);
             #region done
             //var nums = new int[] { 7, 1, 5, 3, 6, 4 };
