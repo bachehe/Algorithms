@@ -8,6 +8,52 @@ namespace excerc.Exerc.RoadMap
 {
     public class LinkedList
     {
+        public void ReorderList(ListNode head)
+        {
+            ListNode slow = head, fast = head.next;
+
+            //split
+            while (fast != null && fast.next != null)
+            {
+                fast = fast.next.next;
+                slow = slow.next;
+            }
+
+            //left is first halve, right is second
+            ListNode right = slow.next, left = head;
+
+            //break link between first and second half
+            slow.next = null;
+
+            //reverse right
+            ListNode prev = null, curr = right;
+            while (curr != null)
+            {
+                ListNode next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+            }
+
+            //prev is head of reversed list, so set right to prev
+            right = prev;
+
+            //merge
+            while (right != null)
+            {
+                //maintain reference of next nodes of left and right
+                ListNode leftTemp = left.next, rightTemp = right.next;
+                //set right pointer next to the left
+                left.next = right;
+                //now merge the maintained reference of left.next in front of right
+                right.next = leftTemp;
+
+                //move ahead
+                left = leftTemp;
+                right = rightTemp;
+            }
+        }
+
         public ListNode MergeTwoLists(ListNode list1, ListNode list2)
         {
             ListNode list = new ListNode();

@@ -3,12 +3,17 @@ using excerc.Exerc.RoadMap;
 
 namespace exerc
 {
-    public class Invoke : Exercises
+    public class Invoke : LinkedList
     {
         public void Invoker()
         {
             var nums = 19;
-            
+
+            var node = new ListNode(1);
+            node.next = null;
+            node.val = 1;
+
+            ReorderList(node);
             //LengthOfLongestSubstringSliding(s);
             #region done
             //var nums = new int[] { 7, 1, 5, 3, 6, 4 };
