@@ -8,7 +8,6 @@ namespace exerc
         public void Invoker()
         {
             var nums = 19;
-            Console.WriteLine(IsHappy(nums));
             
             //LengthOfLongestSubstringSliding(s);
             #region done
