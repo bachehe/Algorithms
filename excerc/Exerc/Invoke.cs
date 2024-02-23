@@ -5,6 +5,12 @@ namespace exerc
 {
     public class Invoke : LinkedList
     {
+        public void Recaper()
+        {
+            var recap = new Recap();
+            // var vals = recap.IsPalindrome(121);
+            var rp = recap.RomanToInt("MCMXCIV");
+        }
         public void Invoker()
         {
             var nums = 19;
