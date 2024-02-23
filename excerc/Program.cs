@@ -15,6 +15,7 @@ namespace exerc
             //invoke
             var invoke = new Invoke();
             invoke.Invoker();
+            invoke.Recaper();
         }   
     }
 }
