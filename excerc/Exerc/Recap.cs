@@ -6,15 +6,25 @@ public class Recap
     public int[] TwoSum(int[] nums, int target)
     {
         //updates
-        for (int i = 0; i < nums.Length; i++)
-        {
-            for (int j = 0; j < nums.Length; j++)
-            {
-                if (nums[i] + nums[j] == target)
-                    return new int[2] { nums[i], nums[j] };
-            }
-        }
-        return new int[0];
+        //for (int i = 0; i < nums.Length; i++)
+        //{
+        //    for (int j = 0; j < nums.Length; j++)
+        //    {
+        //        if (nums[i] + nums[j] == target)
+        //            return new int[2] { nums[i], nums[j] };
+        //    }
+        //}
+        //return new int[0];
+
+        string originalString = "123";
+
+        // PadLeft with a width of 6 characters
+        string paddedString = originalString.PadLeft(6, '0');
+
+        Console.WriteLine(paddedString);  // Output: "1234567"
+        Console.WriteLine(paddedString.Length);  // Output: 7
+
+        return new[] {1};
     }
     public bool IsPalindrome(int x)
     {
