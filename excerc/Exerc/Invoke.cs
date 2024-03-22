@@ -9,7 +9,9 @@ namespace exerc
         {
             var recap = new Recap();
             // var vals = recap.IsPalindrome(121);
-            var rp = recap.RomanToInt("MCMXCIV");
+            //var rp = recap.RomanToInt("MCMXCIV");
+
+            recap.TwoSum(new[] { 1 }, 2);
         }
         public void Invoker()
         {
