@@ -16,13 +16,24 @@ public class Recap
         //}
         //return new int[0];
 
-        string originalString = "123";
+        //string originalString = "72";
 
-        // PadLeft with a width of 6 characters
-        string paddedString = originalString.PadLeft(6, '0');
+        //// PadLeft with a width of 6 characters
+        //var dupa = originalString.PadLeft(6, '0');
+        //string paddedString2 = originalString.PadRight(6, '0');
 
-        Console.WriteLine(paddedString);  // Output: "1234567"
-        Console.WriteLine(paddedString.Length);  // Output: 7
+        var original = "123456";
+        var original2 = "123456";
+
+        var sub1 = original.Substring(0, 2);
+        original2.Substring(0, 2);
+        Console.WriteLine(sub1) ;
+        Console.WriteLine(original2) ;
+
+
+
+        //Console.WriteLine(dupa);  // Output: "1234567"
+        //Console.WriteLine(paddedString2 +  " right");  // Output: 7
 
         return new[] {1};
     }
