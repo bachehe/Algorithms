@@ -11,7 +11,7 @@ namespace exerc
             // var vals = recap.IsPalindrome(121);
             //var rp = recap.RomanToInt("MCMXCIV");
 
-            recap.TwoSum(new[] { 1 }, 2);
+            recap.StarMaker(3);
         }
         public void Invoker()
         {
