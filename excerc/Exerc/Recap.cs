@@ -3,6 +3,34 @@
 namespace excerc.Exerc;
 public class Recap
 {
+    public void StarMaker(int row)
+    {
+        // Outer initializer
+
+
+        // Outer loop and exit condition
+        while (row < 10)
+        {
+            // Inner loop initializer
+            int column = 0;
+
+            // Inner loop and exit condition
+            while (column < row + 1)
+            {
+                // Inner loop body
+                Console.Write("*");
+
+                // Inner loop increment
+                column++;
+            }
+
+            // Remainder of outer loop body
+            Console.WriteLine();
+
+            // Outer loop increment
+            row++;
+        }
+    }
     public int[] TwoSum(int[] nums, int target)
     {
         //updates
@@ -27,15 +55,15 @@ public class Recap
 
         var sub1 = original.Substring(0, 2);
         original2.Substring(0, 2);
-        Console.WriteLine(sub1) ;
-        Console.WriteLine(original2) ;
+        Console.WriteLine(sub1);
+        Console.WriteLine(original2);
 
 
 
         //Console.WriteLine(dupa);  // Output: "1234567"
         //Console.WriteLine(paddedString2 +  " right");  // Output: 7
 
-        return new[] {1};
+        return new[] { 1 };
     }
     public bool IsPalindrome(int x)
     {
@@ -53,7 +81,7 @@ public class Recap
     public int RomanToInt(string s)
     {
         var res = 0;
-        Dictionary<char, int> romanDict = new ()
+        Dictionary<char, int> romanDict = new()
             {
                 {'I', 1},
                 {'V', 5},
