@@ -7,11 +7,14 @@ namespace exerc
     {
         public void Recaper()
         {
-            var recap = new Recap();
+            //var recap = new Recap();
             // var vals = recap.IsPalindrome(121);
             //var rp = recap.RomanToInt("MCMXCIV");
 
-            recap.StarMaker(3);
+            //recap.StarMaker(3);
+
+            var exc = new Exercises();
+            exc.ConvertToTitle(701);
         }
         public void Invoker()
         {
