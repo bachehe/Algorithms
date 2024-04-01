@@ -6,6 +6,27 @@ namespace exerc
 {
     public class Exercises
     {
+        public string ConvertToTitle(int columnNumber)
+        {
+            string alphabet = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var res = new List<char>();
+
+            int j = 0;
+            while (columnNumber > 0)
+            {
+                res.Add(alphabet[columnNumber % 26 == 0 ? 26 : columnNumber % 26]);
+                columnNumber = (columnNumber - (columnNumber % 26 == 0 ? 26 : columnNumber % 26)) / 26;
+                j++;
+            }
+
+            alphabet = "";
+            for (int i = res.Count - 1; i >= 0; i--)
+            {
+                alphabet = alphabet + res[i];
+            }
+
+            return alphabet;
+        }
         public static bool IsHappy(int n)
         {
             var set = new HashSet<int>();
