@@ -70,6 +70,7 @@ namespace exerc
         }
         public static bool IsPalindrome(string s)
         {
+            //vals
             var sb = new StringBuilder();
             var sb2 = new StringBuilder();
             foreach (var i in s.ToLower().ToCharArray())
